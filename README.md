@@ -170,12 +170,13 @@ To use the above module we will have to call it from our root module. The Key Va
 module "kv" {
   source = "./modules/key_vault"
 
-  name     = var.env_name
-  rg_name  = azurerm_resource_group.rg.name
-  location = azurerm_resource_group.rg.location
+  name      = var.env_name
+  rg_name   = azurerm_resource_group.rg.name
+  location  = azurerm_resource_group.rg.location
+  tenant_id = ""
 }
 ```
-
+You can find the tenant id from the Azure portal for example. We'll see a programmatic way to reference it a bit later on.
 Make sure the source is correctly pointing to the directory where the key vault child module is located. 
 
 ### Bonus task
@@ -216,8 +217,8 @@ We will want to store this password in Key Vault but to do that the user running
 data "azurerm_client_config" "this" {
 }
 ```
-
-We can then create a role assignment to the Key Vault, add the following to the kv.tf file:
+How can we use this data source to refer to current users `tenant_id`? Update the file where you are calling the Key Vault module.
+We can then create a role assignment to the Key Vault, add the following to the `kv.tf` file:
 
 ```
 resource "azurerm_role_assignment" "kv_admin" {
