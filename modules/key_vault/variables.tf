@@ -9,3 +9,7 @@ variable "rg_name" {
 variable "location" {
   description = "Location for the resources"
 }
+
+variable "tenant_id" {
+  descdescription = "The tenant id to be used for the Key Vault"  
+}

@@ -9,6 +9,8 @@ resource "azurerm_key_vault" "key_vault" {
   location            = var.location
   resource_group_name = var.rg_name
 
+  tenant_id = var.tenant_id
+
   purge_protection_enabled = false
 
   sku_name = "standard"

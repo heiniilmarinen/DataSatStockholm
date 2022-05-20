@@ -166,7 +166,7 @@ You can find a Key Vault module in this reository in the modules folder. Add thi
 
 To use the above module we will have to call it from our root module. The Key Vault module defines some variables that don't have default values. These will have to be defined when calling from the child module. In the main directory where you initially started working (this is where you have your `sql.tf` file), add a `kv.tf` file. In the file add the following configuration:
 
-
+```
 module "kv" {
   source = "./modules/key_vault"
 
@@ -174,6 +174,7 @@ module "kv" {
   rg_name  = azurerm_resource_group.rg.name
   location = azurerm_resource_group.rg.location
 }
+```
 
 Make sure the source is correctly pointing to the directory where the key vault child module is located. 
 
